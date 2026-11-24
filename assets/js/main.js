@@ -1,6 +1,7 @@
 // Main JavaScript for Yingpei Wang's Portfolio
 
 document.addEventListener('DOMContentLoaded', () => {
+  initPrivateGate();
   initTheme();
   initMobileMenu();
   initProjectFilter();
@@ -8,6 +9,59 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initRenderMath();
 });
+
+// 0. Private Access Gate
+const PASSCODE_HASH = '225645362eed232d691152098e0c8d75366321aab2f8124241fe985793f514eb'; // SHA-256 for 'yingpei2026'
+
+async function hashPasscode(str) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(str);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function initPrivateGate() {
+  const overlay = document.getElementById('private-lock-overlay');
+  if (!overlay) return;
+  
+  if (sessionStorage.getItem('site_authenticated') === 'true') {
+    overlay.remove();
+  } else {
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+window.verifyPasscode = async function() {
+  const input = document.getElementById('passcode-input');
+  const errorEl = document.getElementById('passcode-error');
+  const overlay = document.getElementById('private-lock-overlay');
+  
+  if (!input) return;
+  const hash = await hashPasscode(input.value.trim());
+  
+  if (hash === PASSCODE_HASH) {
+    sessionStorage.setItem('site_authenticated', 'true');
+    document.body.style.overflow = '';
+    if (overlay) {
+      overlay.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => overlay.remove(), 300);
+    }
+  } else {
+    if (errorEl) {
+      errorEl.classList.remove('hidden');
+    }
+    input.classList.add('ring-2', 'ring-rose-500', 'border-rose-500');
+    setTimeout(() => {
+      input.classList.remove('ring-2', 'ring-rose-500', 'border-rose-500');
+    }, 1500);
+  }
+};
+
+window.lockSite = function() {
+  sessionStorage.removeItem('site_authenticated');
+  location.reload();
+};
 
 // 1. Theme Management (Dark / Light)
 function initTheme() {

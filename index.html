@@ -6,6 +6,9 @@
   <title>Yingpei Wang | AI & ML Systems Researcher</title>
   <meta name="description" content="Personal portfolio and technical notes of Yingpei Wang — AI & Machine Learning Engineer specializing in Large Language Models, High-Performance ML Systems, PyTorch, and JAX.">
   <meta name="author" content="Yingpei Wang">
+  <!-- Privacy & Search Engine Block -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
 
   <!-- Tailwind CSS via CDN with custom configuration -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -43,6 +46,52 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-[#0b0f19] dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-blue-500 selection:text-white">
+
+  <!-- ==================== PRIVATE ACCESS LOCK SCREEN ==================== -->
+  <div id="private-lock-overlay" class="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/90 backdrop-blur-xl transition-opacity duration-300">
+    <div class="glass w-full max-w-md mx-4 p-8 rounded-3xl shadow-2xl bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-slate-800 text-center">
+      <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+        </svg>
+      </div>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">Private Portfolio</h2>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+        This portfolio is currently in private preview mode.<br>Please enter your passcode to view.
+      </p>
+
+      <form id="passcode-form" class="space-y-4" onsubmit="event.preventDefault(); verifyPasscode();">
+        <div class="relative">
+          <input
+            id="passcode-input"
+            type="password"
+            placeholder="Enter access passcode..."
+            class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-center text-sm tracking-widest placeholder:tracking-normal placeholder:font-sans transition-all"
+            required
+            autocomplete="current-password"
+            autofocus
+          />
+        </div>
+
+        <div id="passcode-error" class="hidden text-xs text-rose-500 font-medium py-1 animate-pulse">
+          Incorrect passcode. Please try again.
+        </div>
+
+        <button
+          type="submit"
+          class="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
+        >
+          <span>Unlock Site</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+      </form>
+
+      <div class="mt-6 pt-4 border-t border-slate-200/60 dark:border-slate-800 text-[11px] text-slate-400">
+        &copy; Yingpei Wang &bull; Private Access Only
+      </div>
+    </div>
+  </div>
 
   <!-- ==================== NAVIGATION BAR ==================== -->
   <nav class="sticky top-0 z-50 glass-nav transition-all">
@@ -855,6 +904,11 @@
     <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p>&copy; <span id="current-year">2026</span> Yingpei Wang. Built with modern web standards, Tailwind CSS & KaTeX.</p>
       <div class="flex items-center gap-4">
+        <button onclick="lockSite()" class="hover:text-rose-500 flex items-center gap-1 transition-colors" title="Lock and require passcode again">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          Lock Site
+        </button>
+        <span class="text-slate-300 dark:text-slate-700">&bull;</span>
         <a href="#" class="hover:text-slate-900 dark:hover:text-white transition-colors">Back to Top &uarr;</a>
       </div>
     </div>

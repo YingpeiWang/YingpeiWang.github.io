@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yingpei Wang | AI & ML Systems Researcher</title>
+  <meta name="description" content="Personal portfolio and technical notes of Yingpei Wang — AI & Machine Learning Engineer specializing in Large Language Models, High-Performance ML Systems, PyTorch, and JAX.">
+  <meta name="author" content="Yingpei Wang">
+
+  <!-- Tailwind CSS via CDN with custom configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'Menlo', 'Monaco', 'Courier New', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- KaTeX for LaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-[#0b0f19] dark:text-slate-100 transition-colors duration-200 antialiased selection:bg-blue-500 selection:text-white">
+
+  <!-- ==================== NAVIGATION BAR ==================== -->
+  <nav class="sticky top-0 z-50 glass-nav transition-all">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo / Monogram -->
+        <a href="#" class="flex items-center gap-2 group">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-sm tracking-wider shadow-sm group-hover:scale-105 transition-transform">
+            YW
+          </div>
+          <span class="font-bold text-lg tracking-tight text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            Yingpei Wang
+          </span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About</a>
+          <a href="#focus" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Research Focus</a>
+          <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Projects</a>
+          <a href="#notes" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Notes & Math</a>
+          <a href="#reading" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Reading Shelf</a>
+          <a href="#resume" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Resume</a>
+          <a href="#contact" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</a>
+        </div>
+
+        <!-- Controls: Theme Toggle & GitHub Link -->
+        <div class="flex items-center gap-3">
+          <button id="theme-toggle" type="button" aria-label="Toggle theme" class="p-2 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <!-- Sun Icon (for dark mode) -->
+            <svg class="w-5 h-5 theme-sun-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <!-- Moon Icon (for light mode) -->
+            <svg class="w-5 h-5 theme-moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+
+          <a href="https://github.com/YingpeiWang" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg>
+            GitHub
+          </a>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-button" type="button" aria-expanded="false" class="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#0b0f19]/95 backdrop-blur-md px-4 pt-2 pb-4 space-y-2 text-sm font-medium">
+      <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800">About</a>
+      <a href="#focus" class="mobile-nav-link block px-3 py-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800">Research Focus</a>
+      <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800">Projects</a>
+      <a href="#notes" class="mobile-nav-link block px-3 py-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800">Notes & Math</a>
+      <a href="#reading" class="mobile-nav-link block px-3 py-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800">Reading Shelf</a>
+      <a href="#resume" class="mobile-nav-link block px-3 py-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800">Resume</a>
+      <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <header class="relative pt-20 pb-16 md:pt-28 md:pb-24 overflow-hidden">
+    <!-- Subtle gradient glow behind hero -->
+    <div class="absolute inset-0 -z-10 flex items-center justify-center">
+      <div class="w-[38rem] h-[38rem] bg-gradient-to-tr from-blue-500/10 to-purple-500/10 dark:from-blue-500/20 dark:to-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-10">
+        
+        <div class="flex-1 text-center md:text-left">
+          <!-- Status pill -->
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200/80 dark:border-blue-800/60 mb-6">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Building High-Performance LLMs & Deep Learning Systems
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight mb-4">
+            Hi, I'm <span class="text-gradient">Yingpei Wang</span>
+          </h1>
+
+          <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl font-normal leading-relaxed mb-8">
+            AI & Machine Learning Engineer exploring <strong>Large Language Models</strong>, <strong>high-performance distributed training</strong>, and <strong>accelerated deep learning systems</strong> using PyTorch, JAX, and CUDA.
+          </p>
+
+          <!-- Action buttons -->
+          <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
+            <a href="#projects" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+              View Projects
+            </a>
+            <a href="#notes" class="px-5 py-2.5 rounded-xl bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:border-blue-500 font-medium text-sm transition-all flex items-center gap-2">
+              <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+              Read Tech Notes
+            </a>
+            <a href="#resume" class="px-4 py-2.5 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium text-sm transition-colors flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              Curriculum Vitae
+            </a>
+          </div>
+
+          <!-- Quick badges -->
+          <div class="mt-8 pt-6 border-t border-slate-200/60 dark:border-slate-800/80 flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs font-mono text-slate-600 dark:text-slate-400">
+            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80">PyTorch</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80">JAX</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80">Transformers / LLMs</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80">FlashAttention</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80">CUDA</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80">Distributed Training</span>
+          </div>
+        </div>
+
+        <!-- Hero Avatar / Visual Card -->
+        <div class="flex-shrink-0">
+          <div class="relative group">
+            <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 p-1 shadow-2xl transition-transform duration-300 group-hover:scale-105">
+              <div class="w-full h-full rounded-[14px] bg-slate-900 flex flex-col items-center justify-center p-6 text-center text-white relative overflow-hidden">
+                <!-- Abstract neural grid pattern -->
+                <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:12px_12px]"></div>
+                
+                <div class="w-16 h-16 rounded-full bg-blue-500/20 border border-blue-400/40 flex items-center justify-center text-2xl font-bold mb-3 text-blue-300">
+                  YW
+                </div>
+                <h2 class="text-base font-semibold tracking-tight">Yingpei Wang</h2>
+                <p class="text-xs text-slate-400 mt-1 font-mono">wypagyyxin@gmail.com</p>
+                <div class="mt-4 flex gap-3 text-slate-400">
+                  <a href="https://github.com/YingpeiWang" target="_blank" aria-label="GitHub" class="hover:text-white transition-colors">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </a>
+                  <button class="copy-btn hover:text-white transition-colors" data-copy="wypagyyxin@gmail.com" title="Copy email">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== ABOUT & RESEARCH FOCUS ==================== -->
+  <section id="focus" class="py-16 bg-white/50 dark:bg-slate-900/40 border-y border-slate-200/80 dark:border-slate-800/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2 font-mono">Core Domains</h2>
+        <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">Research & Engineering Focus</h3>
+        <p class="text-slate-600 dark:text-slate-400 text-sm mt-2 max-w-2xl">
+          Bridging mathematical foundations of neural networks with production-grade systems, hardware acceleration, and training efficiency.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Pillar 1 -->
+        <div class="glass p-6 rounded-2xl card-hover">
+          <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">LLM Architecture & Pretraining</h4>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Building autoregressive transformer models from first principles (GPT-2, Llama). In-depth study of Rotary Position Embedding (RoPE), KV-cache mechanisms, and tokenization dynamics.
+          </p>
+          <div class="flex flex-wrap gap-1.5 text-xs font-mono text-slate-600 dark:text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">nanoGPT</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">BPE Tokenizers</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">Autoregressive Decoding</span>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="glass p-6 rounded-2xl card-hover">
+          <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">High-Performance ML Systems</h4>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Maximizing hardware utilization via memory-bound kernel optimizations, FlashAttention-2 tiling, FP8/INT4 quantization, and distributed scaling paradigms (ZeRO, FSDP, Tensor Parallelism).
+          </p>
+          <div class="flex flex-wrap gap-1.5 text-xs font-mono text-slate-600 dark:text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">FlashAttention</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">FSDP / ZeRO</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">CUDA / Triton</span>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="glass p-6 rounded-2xl card-hover">
+          <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Functional ML & JAX Acceleration</h4>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Leveraging functional composability with JAX, XLA compilation, vectorization (<code class="text-xs bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded">vmap</code>), and multi-device distributed parallelism (<code class="text-xs bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded">pmap</code>).
+          </p>
+          <div class="flex flex-wrap gap-1.5 text-xs font-mono text-slate-600 dark:text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">JAX</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">XLA</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">AutoDiff</span>
+          </div>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="glass p-6 rounded-2xl card-hover">
+          <div class="w-10 h-10 rounded-xl bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-400 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Inference Optimization & Benchmarking</h4>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Benchmarking time-to-first-token (TTFT) and token generation throughput, continuous batching architectures, paged attention, and speculative decoding.
+          </p>
+          <div class="flex flex-wrap gap-1.5 text-xs font-mono text-slate-600 dark:text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">PagedAttention</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">Speculative Decoding</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">Quantization</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURED PROJECTS ==================== -->
+  <section id="projects" class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <h2 class="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2 font-mono">Showcase</h2>
+          <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">Featured Projects</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-1">Open-source implementations, scaled models, and systems benchmarks.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap gap-2 text-xs font-medium">
+          <button class="filter-btn px-3 py-1.5 rounded-lg bg-blue-600 text-white transition-colors" data-filter="all">All</button>
+          <button class="filter-btn px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 transition-colors" data-filter="systems">Systems & Perf</button>
+          <button class="filter-btn px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 transition-colors" data-filter="llm">LLM Architectures</button>
+          <button class="filter-btn px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 transition-colors" data-filter="jax">JAX & Functional</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
+        
+        <!-- Project 1: HighPerfLLMs -->
+        <div class="project-card glass p-6 rounded-2xl card-hover flex flex-col justify-between" data-category="systems">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/50">
+                High Performance
+              </span>
+              <a href="https://github.com/YingpeiWang" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              </a>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2">HighPerfLLMs: Scaled ML Benchmarks</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+              Comprehensive exploration and profiling of modern LLM training & inference scaling. Analyzes FlashAttention-2 speedups, FP8 vs BF16 throughput, KV-cache memory pressure, and distributed communication overheads.
+            </p>
+          </div>
+          <div>
+            <div class="flex flex-wrap gap-1.5 mb-4 text-xs font-mono text-slate-600 dark:text-slate-400">
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">CUDA</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">FlashAttention</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">PyTorch Profiler</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">FP8</span>
+            </div>
+            <a href="https://github.com/YingpeiWang" target="_blank" class="inline-flex items-center text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline gap-1">
+              View Repository & Benchmarks &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2: nanoGPT Exploration -->
+        <div class="project-card glass p-6 rounded-2xl card-hover flex flex-col justify-between" data-category="llm">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/50">
+                LLM Foundations
+              </span>
+              <a href="https://github.com/YingpeiWang" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              </a>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2">nanoGPT & Scaled Pretraining</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+              Building and tuning a lightweight, fast GPT implementation inspired by Andrej Karpathy. Features custom character and BPE tokenizers, cosine decay learning rate scheduling, mixed precision (AMP), and evaluation on Shakespeare and OpenWebText.
+            </p>
+          </div>
+          <div>
+            <div class="flex flex-wrap gap-1.5 mb-4 text-xs font-mono text-slate-600 dark:text-slate-400">
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">PyTorch</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">Autoregressive</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">BPE</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">Mixed Precision</span>
+            </div>
+            <a href="https://github.com/YingpeiWang" target="_blank" class="inline-flex items-center text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline gap-1">
+              View Repository & Setup &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3: JAX Deep Learning Systems -->
+        <div class="project-card glass p-6 rounded-2xl card-hover flex flex-col justify-between" data-category="jax systems">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/50">
+                Functional ML
+              </span>
+              <a href="https://github.com/YingpeiWang" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              </a>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2">JAX Neural Transformations</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+              Experiments in purely functional neural network definitions. Harnessing <code class="text-xs bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded">jax.jit</code>, vectorization across batch dimensions with <code class="text-xs bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded">jax.vmap</code>, and multi-accelerator SPMD parallelism.
+            </p>
+          </div>
+          <div>
+            <div class="flex flex-wrap gap-1.5 mb-4 text-xs font-mono text-slate-600 dark:text-slate-400">
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">JAX</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">XLA</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">AutoDiff</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">SPMD</span>
+            </div>
+            <a href="https://github.com/YingpeiWang" target="_blank" class="inline-flex items-center text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline gap-1">
+              Explore JAX Implementations &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 4: GPT-2 Recreation -->
+        <div class="project-card glass p-6 rounded-2xl card-hover flex flex-col justify-between" data-category="llm">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/50">
+                Reproduction
+              </span>
+              <a href="https://github.com/YingpeiWang" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              </a>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2">GPT-2 (124M) Exact Architecture</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+              Ground-up recreation of GPT-2 (124M parameter configuration) matching OpenAI’s original weight layout. Implements causal multi-head self-attention, GELU activation, and layer normalization placement analysis.
+            </p>
+          </div>
+          <div>
+            <div class="flex flex-wrap gap-1.5 mb-4 text-xs font-mono text-slate-600 dark:text-slate-400">
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">PyTorch</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">Causal Attention</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">Weight Verification</span>
+            </div>
+            <a href="https://github.com/YingpeiWang" target="_blank" class="inline-flex items-center text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline gap-1">
+              View Repository &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TECHNICAL NOTES & RESEARCH BLOG (Lilian Weng / Distill style) ==================== -->
+  <section id="notes" class="py-16 bg-white/50 dark:bg-slate-900/40 border-y border-slate-200/80 dark:border-slate-800/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-10">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2 font-mono">Deep Dives & Math</h2>
+        <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">Technical Notes & Insights</h3>
+        <p class="text-slate-600 dark:text-slate-400 text-sm mt-2 max-w-2xl">
+          Deep dives into algorithmic and hardware efficiency for modern machine learning models, complete with mathematical formulations and diagrams.
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        <!-- Article Card 1: FlashAttention Deep Dive -->
+        <article class="glass p-6 sm:p-8 rounded-2xl card-hover cursor-pointer" onclick="openNoteModal('flash-attention')">
+          <div class="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400 mb-3">
+            <span>Systems & Architecture</span>
+            <span class="flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              8 min read
+            </span>
+          </div>
+
+          <h4 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors mb-3">
+            Deconstructing Attention: From Vanilla Self-Attention to FlashAttention-2
+          </h4>
+
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            Standard self-attention scales quadratically in memory IO because the intermediate attention matrix $\mathbf{S} = \mathbf{Q}\mathbf{K}^T$ requires materialization in high-latency High Bandwidth Memory (HBM). How does FlashAttention tile online softmax to achieve $O(N)$ memory and near-optimal FLOP utilization?
+          </p>
+
+          <!-- Inline Math formula preview -->
+          <div class="text-xs sm:text-sm font-mono text-blue-600 dark:text-blue-300 py-1">
+            $$\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}}\right)\mathbf{V}$$
+          </div>
+
+          <div class="mt-4 flex items-center justify-between pt-4 border-t border-slate-200/60 dark:border-slate-800/80">
+            <div class="flex gap-2">
+              <span class="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-slate-600 dark:text-slate-400">FlashAttention</span>
+              <span class="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-slate-600 dark:text-slate-400">Online Softmax</span>
+              <span class="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-slate-600 dark:text-slate-400">SRAM Tiling</span>
+            </div>
+            <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1">
+              Read Deep Dive &rarr;
+            </span>
+          </div>
+        </article>
+
+        <!-- Article Card 2: KV Cache & RoPE -->
+        <article class="glass p-6 sm:p-8 rounded-2xl card-hover cursor-pointer" onclick="openNoteModal('kv-cache')">
+          <div class="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400 mb-3">
+            <span>LLM Inference Dynamics</span>
+            <span class="flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              6 min read
+            </span>
+          </div>
+
+          <h4 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors mb-3">
+            The Mechanics of Autoregressive Decoding: KV-Cache & Rotary Positional Embeddings
+          </h4>
+
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            During autoregressive generation, computing keys and values from scratch every token step turns $O(T)$ computation into $O(T^2)$. We review the exact memory formula for KV caching and why RoPE (Rotary Position Embeddings) elegantly encodes relative token distances.
+          </p>
+
+          <div class="text-xs sm:text-sm font-mono text-indigo-600 dark:text-indigo-300 py-1">
+            $$\mathbf{R}_{\Theta, m}^d = \text{diag}\left( \mathbf{R}_{\theta_1, m}, \dots, \mathbf{R}_{\theta_{d/2}, m} \right), \quad \theta_i = 10000^{-2(i-1)/d}$$
+          </div>
+
+          <div class="mt-4 flex items-center justify-between pt-4 border-t border-slate-200/60 dark:border-slate-800/80">
+            <div class="flex gap-2">
+              <span class="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-slate-600 dark:text-slate-400">KV Cache</span>
+              <span class="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-slate-600 dark:text-slate-400">RoPE</span>
+              <span class="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-slate-600 dark:text-slate-400">Memory Bandwidth</span>
+            </div>
+            <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1">
+              Read Deep Dive &rarr;
+            </span>
+          </div>
+        </article>
+
+        <!-- Article Card 3: Distributed Training Strategies -->
+        <article class="glass p-6 sm:p-8 rounded-2xl card-hover cursor-pointer" onclick="openNoteModal('distributed-training')">
+          <div class="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400 mb-3">
+            <span>Distributed ML Systems</span>
+            <span class="flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              10 min read
+            </span>
+          </div>
+
+          <h4 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors mb-3">
+            Scaling LLM Training: Demystifying DDP, ZeRO Stages 1–3, and 3D Parallelism
+          </h4>
+
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+            When model parameters, optimizer states, and activations exceed the VRAM of a single GPU, how do we partition state without incurring prohibitive communication bottlenecks?
+          </p>
+
+          <div class="mt-4 flex items-center justify-between pt-4 border-t border-slate-200/60 dark:border-slate-800/80">
+            <div class="flex gap-2">
+              <span class="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-slate-600 dark:text-slate-400">ZeRO</span>
+              <span class="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-slate-600 dark:text-slate-400">FSDP</span>
+              <span class="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-slate-600 dark:text-slate-400">Tensor Parallelism</span>
+            </div>
+            <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1">
+              Read Deep Dive &rarr;
+            </span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CURATED READING SHELF & PAPERS ==================== -->
+  <section id="reading" class="py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2 font-mono">Bibliography</h2>
+        <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">Curated Reading Shelf</h3>
+        <p class="text-slate-600 dark:text-slate-400 text-sm mt-1">Foundational and cutting-edge papers that inform my work.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Paper 1 -->
+        <div class="glass p-5 rounded-xl flex items-start gap-3">
+          <div class="p-2 rounded-lg bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+          </div>
+          <div>
+            <h5 class="font-bold text-sm text-slate-900 dark:text-white">FlashAttention-2: Faster Attention with Better Parallelism</h5>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Tri Dao (2023) &bull; NeurIPS</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2">Pioneering IO-aware algorithm that achieves 2x speedup over original FlashAttention via sequence parallelization across thread blocks.</p>
+          </div>
+        </div>
+
+        <!-- Paper 2 -->
+        <div class="glass p-5 rounded-xl flex items-start gap-3">
+          <div class="p-2 rounded-lg bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+          </div>
+          <div>
+            <h5 class="font-bold text-sm text-slate-900 dark:text-white">Training Compute-Optimal Large Language Models (Chinchilla)</h5>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Hoffmann et al. (DeepMind, 2022)</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2">Established optimal scaling laws between model parameters and training token counts ($N \approx D$ scaling ratio).</p>
+          </div>
+        </div>
+
+        <!-- Paper 3 -->
+        <div class="glass p-5 rounded-xl flex items-start gap-3">
+          <div class="p-2 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+          </div>
+          <div>
+            <h5 class="font-bold text-sm text-slate-900 dark:text-white">Llama 2 & 3: Open Foundation and Fine-Tuned Chat Models</h5>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Meta AI Research (2023, 2024)</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2">Architecture standards for modern LLMs: SwiGLU activations, Grouped-Query Attention (GQA), and RoPE context scaling.</p>
+          </div>
+        </div>
+
+        <!-- Paper 4 -->
+        <div class="glass p-5 rounded-xl flex items-start gap-3">
+          <div class="p-2 rounded-lg bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+          </div>
+          <div>
+            <h5 class="font-bold text-sm text-slate-900 dark:text-white">ZeRO: Memory Optimizations Toward Training Trillion Parameter Models</h5>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Rajbhandari et al. (Microsoft Research, 2020)</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2">Zero Redundancy Optimizer: Eliminating redundant memory in data-parallel training while preserving communication efficiency.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CURRICULUM VITAE & EXPERIENCE ==================== -->
+  <section id="resume" class="py-16 bg-white/50 dark:bg-slate-900/40 border-y border-slate-200/80 dark:border-slate-800/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+        <div>
+          <h2 class="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2 font-mono">Qualifications</h2>
+          <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">Curriculum Vitae</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-1">Experience, technical competencies, and background.</p>
+        </div>
+
+        <button onclick="window.print()" class="no-print inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:border-blue-500 text-xs font-semibold shadow-sm transition-all">
+          <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          Print / Save PDF
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Skills Matrix -->
+        <div class="space-y-6">
+          <div class="glass p-6 rounded-2xl">
+            <h4 class="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+              <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+              Core Stack
+            </h4>
+
+            <div class="space-y-3 text-xs">
+              <div>
+                <div class="flex justify-between text-slate-700 dark:text-slate-300 font-medium mb-1">
+                  <span>PyTorch & Deep Learning</span>
+                  <span>95%</span>
+                </div>
+                <div class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                  <div class="h-full bg-blue-600 rounded-full" style="width: 95%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-700 dark:text-slate-300 font-medium mb-1">
+                  <span>LLM Architectures & Transformers</span>
+                  <span>90%</span>
+                </div>
+                <div class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                  <div class="h-full bg-indigo-600 rounded-full" style="width: 90%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-700 dark:text-slate-300 font-medium mb-1">
+                  <span>JAX & XLA Functional ML</span>
+                  <span>85%</span>
+                </div>
+                <div class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                  <div class="h-full bg-emerald-600 rounded-full" style="width: 85%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-700 dark:text-slate-300 font-medium mb-1">
+                  <span>CUDA & FlashAttention Systems</span>
+                  <span>80%</span>
+                </div>
+                <div class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                  <div class="h-full bg-purple-600 rounded-full" style="width: 80%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-200/80 dark:border-slate-800 text-xs">
+              <span class="font-bold text-slate-800 dark:text-slate-200">Tools:</span>
+              <p class="text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                Python, C++, PyTorch, JAX, Hugging Face, Triton, Git, Linux/Bash, Docker, Weights & Biases.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience & Projects Timeline -->
+        <div class="md:col-span-2 space-y-6">
+          <div class="glass p-6 rounded-2xl">
+            <h4 class="text-base font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+              <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              Research & Development Timeline
+            </h4>
+
+            <div class="relative border-l border-slate-200 dark:border-slate-800 ml-3 space-y-8 text-sm">
+              <!-- Item 1 -->
+              <div class="relative pl-6">
+                <span class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-blue-600 ring-4 ring-blue-100 dark:ring-blue-950"></span>
+                <span class="text-xs font-mono font-semibold text-blue-600 dark:text-blue-400">2024 &ndash; Present</span>
+                <h5 class="text-base font-bold text-slate-900 dark:text-white mt-1">High-Performance LLM Training & Scaled Systems</h5>
+                <p class="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-relaxed">
+                  Profiling modern LLM pipelines with FlashAttention, evaluating memory bandwidth bottlenecks in multi-GPU distributed clusters, and implementing zero-redundancy optimizer sharding.
+                </p>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="relative pl-6">
+                <span class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-400 dark:bg-slate-600 ring-4 ring-slate-100 dark:ring-slate-900"></span>
+                <span class="text-xs font-mono font-semibold text-slate-500 dark:text-slate-400">2023 &ndash; 2024</span>
+                <h5 class="text-base font-bold text-slate-900 dark:text-white mt-1">From-Scratch Deep Learning Architectures</h5>
+                <p class="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-relaxed">
+                  Systematic recreation of GPT-2, character and BPE tokenizers, causal self-attention masks, weight initialization scaling ($1/\sqrt{2N_{\text{layer}}}$), and Karpathy nanoGPT workflows.
+                </p>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="relative pl-6">
+                <span class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-400 dark:bg-slate-600 ring-4 ring-slate-100 dark:ring-slate-900"></span>
+                <span class="text-xs font-mono font-semibold text-slate-500 dark:text-slate-400">2022 &ndash; 2023</span>
+                <h5 class="text-base font-bold text-slate-900 dark:text-white mt-1">Functional Neural Computing & Mathematics</h5>
+                <p class="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-relaxed">
+                  Deep study of numerical optimization, linear algebra foundations, auto-differentiation in JAX, and accelerated computational graphs with XLA.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT SECTION ==================== -->
+  <section id="contact" class="py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2 font-mono">Let's Connect</h2>
+      <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-4">Get in Touch</h3>
+      <p class="text-slate-600 dark:text-slate-400 text-sm max-w-lg mx-auto mb-8">
+        I am always open to discussing new research ideas, high-performance systems engineering, collaborations, or technical challenges.
+      </p>
+
+      <div class="glass p-8 rounded-2xl max-w-xl mx-auto text-left shadow-lg">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-slate-100/80 dark:bg-slate-800/80 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-blue-600 text-white flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            </div>
+            <div>
+              <span class="text-xs text-slate-500 dark:text-slate-400 block font-medium">Direct Email</span>
+              <span class="text-sm font-semibold text-slate-900 dark:text-white font-mono">wypagyyxin@gmail.com</span>
+            </div>
+          </div>
+          <div class="flex gap-2 w-full sm:w-auto">
+            <button class="copy-btn px-3 py-1.5 rounded-lg bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 text-xs font-medium hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors" data-copy="wypagyyxin@gmail.com">
+              Copy
+            </button>
+            <a href="mailto:wypagyyxin@gmail.com?subject=Hello%20Yingpei" class="px-3 py-1.5 rounded-lg bg-blue-600 text-white text-xs font-medium hover:bg-blue-700 transition-colors">
+              Send Email
+            </a>
+          </div>
+        </div>
+
+        <div class="flex justify-center gap-6 pt-2 text-slate-600 dark:text-slate-400 text-sm font-medium">
+          <a href="https://github.com/YingpeiWang" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1.5 transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+          <span class="text-slate-300 dark:text-slate-700">&bull;</span>
+          <a href="#about" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Portfolio</a>
+          <span class="text-slate-300 dark:text-slate-700">&bull;</span>
+          <a href="#notes" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Research Notes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="py-8 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-500 dark:text-slate-500">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>&copy; <span id="current-year">2026</span> Yingpei Wang. Built with modern web standards, Tailwind CSS & KaTeX.</p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="hover:text-slate-900 dark:hover:text-white transition-colors">Back to Top &uarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== INTERACTIVE NOTE MODAL READER ==================== -->
+  <div id="note-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm transition-opacity" role="dialog" aria-modal="true">
+    <div class="glass w-full max-w-3xl max-h-[90vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden bg-white dark:bg-slate-900">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800">
+        <span class="text-xs font-mono font-semibold text-blue-600 dark:text-blue-400">Technical Note</span>
+        <button onclick="closeNoteModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div id="modal-body" class="p-6 sm:p-8 overflow-y-auto space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+        <!-- Content injected dynamically from templates below -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Note Template 1: FlashAttention -->
+  <template id="template-flash-attention">
+    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Deconstructing Attention: From Vanilla Self-Attention to FlashAttention-2</h3>
+    <div class="flex items-center gap-2 text-xs font-mono text-slate-400 mb-6">
+      <span>By Yingpei Wang</span> &bull; <span>Systems & Kernels</span> &bull; <span>Updated 2026</span>
+    </div>
+
+    <p>In standard transformer models, scaled dot-product attention computes:</p>
+    $$\mathbf{O} = \text{softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}}\right)\mathbf{V}$$
+
+    <h4 class="text-lg font-bold text-slate-900 dark:text-white mt-6 mb-2">The Memory Bottleneck Problem</h4>
+    <p>For a sequence length $N$ and hidden dimension $d$, $\mathbf{Q}, \mathbf{K}, \mathbf{V} \in \mathbb{R}^{N \times d}$. The intermediate matrix $\mathbf{S} = \mathbf{Q}\mathbf{K}^T \in \mathbb{R}^{N \times N}$ requires $O(N^2)$ memory. In GPUs, High Bandwidth Memory (HBM) bandwidth (~2–3 TB/s) is vastly slower than SRAM registers (~19 TB/s). Standard attention writes and reads this $N \times N$ matrix to HBM repeatedly:</p>
+    <ol class="list-decimal list-inside space-y-1 ml-2 text-xs text-slate-600 dark:text-slate-300">
+      <li>Read $\mathbf{Q}, \mathbf{K}$ from HBM $\to$ Compute $\mathbf{S}$ $\to$ Write $\mathbf{S}$ to HBM ($O(N^2)$ IO)</li>
+      <li>Read $\mathbf{S}$ from HBM $\to$ Compute softmax $\mathbf{P}$ $\to$ Write $\mathbf{P}$ to HBM ($O(N^2)$ IO)</li>
+      <li>Read $\mathbf{P}, \mathbf{V}$ from HBM $\to$ Compute $\mathbf{O}$ $\to$ Write $\mathbf{O}$ to HBM</li>
+    </ol>
+
+    <h4 class="text-lg font-bold text-slate-900 dark:text-white mt-6 mb-2">The FlashAttention Solution: Online Softmax</h4>
+    <p>FlashAttention eliminates materializing the $N \times N$ matrix by tiling blocks of $\mathbf{Q}$ and $\mathbf{K}$ into SRAM. By maintaining a running maximum $m_i$ and running sum of exponentials $l_i$, softmax can be computed incrementally without seeing the entire sequence at once:</p>
+    $$m_{\text{new}} = \max(m_{\text{old}}, x), \quad l_{\text{new}} = e^{m_{\text{old}} - m_{\text{new}}} l_{\text{old}} + e^{x - m_{\text{new}}}$$
+    <p>This reduces HBM memory access from $O(N^2)$ to $O(N)$, resulting in 2-4x wall-clock training speedup and enabling 32k+ context windows on existing hardware.</p>
+  </template>
+
+  <!-- Note Template 2: KV Cache -->
+  <template id="template-kv-cache">
+    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">The Mechanics of Autoregressive Decoding: KV-Cache & Rotary Positional Embeddings</h3>
+    <div class="flex items-center gap-2 text-xs font-mono text-slate-400 mb-6">
+      <span>By Yingpei Wang</span> &bull; <span>Inference Optimization</span> &bull; <span>Updated 2026</span>
+    </div>
+
+    <p>During inference generation, an autoregressive language model generates one token at time step $t$. Since past tokens do not change, their Key ($\mathbf{K}$) and Value ($\mathbf{V}$) projections remain identical across generation steps.</p>
+
+    <h4 class="text-lg font-bold text-slate-900 dark:text-white mt-6 mb-2">KV-Cache Memory Footprint</h4>
+    <p>For batch size $b$, sequence length $s$, number of layers $l$, number of key-value heads $h_{kv}$, and head dimension $d_k$, the total memory footprint in bytes (assuming 16-bit precision float16/bfloat16) is:</p>
+    $$\text{Memory}_{\text{KV}} = 2 \times 2 \times b \times s \times l \times h_{kv} \times d_k \quad \text{bytes}$$
+    <p>For a 70B model with context length 8,192 and batch size 16, KV-cache can consume upwards of 30–50 GB VRAM alone! This is why Grouped-Query Attention (GQA) with $h_{kv} \ll h_q$ is essential for long-context generation.</p>
+
+    <h4 class="text-lg font-bold text-slate-900 dark:text-white mt-6 mb-2">Rotary Position Embeddings (RoPE)</h4>
+    <p>RoPE encodes absolute position with a rotation matrix and incorporates explicit relative position dependency in self-attention formulation:</p>
+    $$\langle \mathbf{R}_{\Theta, m} \mathbf{q}, \mathbf{R}_{\Theta, n} \mathbf{k} \rangle = \mathbf{q}^T \mathbf{R}_{\Theta, n-m} \mathbf{k}$$
+    <p>The inner product depends exclusively on the relative distance $(n - m)$, providing seamless length extrapolation properties.</p>
+  </template>
+
+  <!-- Note Template 3: Distributed Training -->
+  <template id="template-distributed-training">
+    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Scaling LLM Training: Demystifying DDP, ZeRO Stages 1–3, and 3D Parallelism</h3>
+    <div class="flex items-center gap-2 text-xs font-mono text-slate-400 mb-6">
+      <span>By Yingpei Wang</span> &bull; <span>Distributed Systems</span> &bull; <span>Updated 2026</span>
+    </div>
+
+    <p>Standard Distributed Data Parallel (DDP) replicates the entire model across all GPUs and synchronizes gradients via AllReduce. While simple, model size is constrained by the VRAM of a single GPU.</p>
+
+    <h4 class="text-lg font-bold text-slate-900 dark:text-white mt-6 mb-2">Memory Breakdown in Training</h4>
+    <p>In standard mixed precision (FP16/BF16) training with AdamW optimizer, memory per parameter $\Phi$ includes:</p>
+    <ul class="list-disc list-inside space-y-1 ml-2 text-xs text-slate-600 dark:text-slate-300">
+      <li><strong>Model parameters:</strong> $2\Phi$ bytes (FP16)</li>
+      <li><strong>Gradients:</strong> $2\Phi$ bytes (FP16)</li>
+      <li><strong>Optimizer states (Adam):</strong> $4\Phi$ (FP32 master weights) + $4\Phi$ (momentum) + $4\Phi$ (variance) = $12\Phi$ bytes</li>
+      <li><strong>Total state:</strong> $16\Phi$ bytes per parameter!</li>
+    </ul>
+
+    <h4 class="text-lg font-bold text-slate-900 dark:text-white mt-6 mb-2">ZeRO Stages</h4>
+    <ul class="list-disc list-inside space-y-1 ml-2 text-xs text-slate-600 dark:text-slate-300">
+      <li><strong>ZeRO-1 ($P_{os}$):</strong> Partitions optimizer states across data-parallel ranks. 4x memory reduction with zero extra communication.</li>
+      <li><strong>ZeRO-2 ($P_{os+g}$):</strong> Partitions optimizer states and gradients. 8x memory reduction.</li>
+      <li><strong>ZeRO-3 ($P_{os+g+p}$ / FSDP):</strong> Partitions optimizer states, gradients, and model parameters. Memory scales inversely with GPU count $N_{devices}$.</li>
+    </ul>
+  </template>
+
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+  <!-- Main Application Script -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
